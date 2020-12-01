@@ -1,7 +1,4 @@
-nums = open("inputs\\day1.txt").read().split("\n")
-nums.remove('')
-for i in range(0, len(nums)): 
-    nums[i] = int(nums[i])
+nums = [int(i) for i in open('inputs\\day1.txt', 'r').readlines()]
 
 part1 = 0
 for i in range(len(nums)):
