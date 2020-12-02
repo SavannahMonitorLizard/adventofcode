@@ -1,10 +1,6 @@
 passwords = open('inputs\\day2.txt', 'r').read().split("\n")
 passwords.remove('')
 
-temp = []
-temp2 = []
-temp3 = []
-count = 0
 total = 0
 
 for i in range(len(passwords)):
@@ -29,10 +25,6 @@ for i in range(len(passwords)):
 
 print(f"part 1: {total}")
 
-temp = []
-temp2 = []
-temp3 = []
-count = 0
 total = 0
 
 for i in range(len(passwords)):
@@ -41,7 +33,6 @@ for i in range(len(passwords)):
     temp3 = temp2[0].split("-")
     temp3[0] = int(temp3[0])
     temp3[1] = int(temp3[1])
-    count = 0
 
     password = temp[1]
     letter = temp2[1]
