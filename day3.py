@@ -1,16 +1,16 @@
 trees = open('inputs\\day3.txt', 'r').read().split("\n")
 
-point = [0, 0]
+y, x = [0, 0]
 count = 0
+y_max = len(trees)
 
 for i in range(len(trees)):
-    point[0] = i + 1
-    point[1] += 3
+    y = i + 1
+    x += 3
 
-    try:
-        if trees[i + 1][point[1] % 31] == "#":
+    while y < y_max:
+        if trees[y][x % 31] == "#":
             count += 1
-    except IndexError:
         break
 
 print(f"Part 1: {count}")
@@ -26,17 +26,16 @@ slopes = [
 total = 1
 
 for s in slopes:
-    point = [0, 0]
+    y, x = [0, 0]
     count = 0
     for i in range(len(trees)):
         dx, dy = s
-        point[0] += dy
-        point[1] += dx
+        y += dy
+        x += dx
 
-        try:
-            if trees[point[0]][point[1] % 31] == "#":
+        while y < y_max:
+            if trees[y][x % 31] == "#":
                 count += 1
-        except IndexError:
             break
 
     total *= count
