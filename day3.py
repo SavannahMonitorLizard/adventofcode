@@ -9,7 +9,7 @@ for i in range(len(trees)):
     x += 3
 
     while y < y_max:
-        if trees[y][x % 31] == "#":
+        if trees[y][x % len(trees[i])] == "#":
             count += 1
         break
 
@@ -34,7 +34,7 @@ for s in slopes:
         x += dx
 
         while y < y_max:
-            if trees[y][x % 31] == "#":
+            if trees[y][x % len(trees[i])] == "#":
                 count += 1
             break
 
