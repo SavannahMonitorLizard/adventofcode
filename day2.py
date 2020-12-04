@@ -1,5 +1,4 @@
 passwords = open('inputs\\day2.txt', 'r').read().split("\n")
-passwords.remove('')
 
 total = 0
 
