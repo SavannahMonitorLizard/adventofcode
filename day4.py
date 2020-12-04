@@ -4,16 +4,6 @@ for i in range(len(passports)):
 
 count = 0
 
-fields = [
-    "byr:",
-    "iyr:",
-    "eyr:",
-    "hgt:",
-    "hcl:",
-    "ecl:",
-    "pid:",
-]
-
 # it works
 for passport in passports:
     if "byr" in passport and "iyr" in passport and "eyr" in passport and "hgt" in passport and "hcl" in passport and "ecl" in passport and "pid" in passport:
