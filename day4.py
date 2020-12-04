@@ -4,7 +4,8 @@ for i in range(len(passports)):
 
 count = 0
 
-# it works
+# fields = ["byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"]
+
 for passport in passports:
     if "byr" in passport and "iyr" in passport and "eyr" in passport and "hgt" in passport and "hcl" in passport and "ecl" in passport and "pid" in passport:
         count += 1
