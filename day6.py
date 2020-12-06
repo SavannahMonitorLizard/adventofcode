@@ -16,12 +16,7 @@ print(f"Part 1: {total}")
 
 total = 0
 
-def intersect(lists):
-    return list(set.intersection(*map(set, lists)))
-
 for answer in answers:
-    count = 0
-    group = answer.split("\n")
-    total += len(intersect(group))
+    total += len(list(set.intersection(*map(set, answer.split("\n")))))
 
 print(f"Part 2: {total}")
