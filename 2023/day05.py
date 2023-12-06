@@ -159,7 +159,7 @@ def p2(lines):
         for pair in li:
             points += pair
 
-    print(points)
+    # print(points)
     
     outs = []
     for pt in points:
