@@ -63,7 +63,7 @@ def main():
     with open("inputs\day3.txt") as f:
         lines = [line.strip() for line in f.readlines()]
 
-    # p1(lines)
+    p1(lines)
     p2(lines)
 
 def getadjacent(lines, i, j):
