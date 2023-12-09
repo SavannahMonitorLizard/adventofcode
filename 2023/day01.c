@@ -31,7 +31,7 @@ void p1() {
                 break;
             }
         }
-        for (int i = strlen(line); line[i] != '\0'; i--) {
+        for (int i = strlen(line); i >= 0; i--) {
             if (isdigit(line[i])) {
                 c2 = line[i];
                 break;
