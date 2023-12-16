@@ -2,7 +2,7 @@
 https://adventofcode.com/2023/day/4
 """
 def main():
-    with open("inputs\day4.txt") as f:
+    with open("inputs\day04.txt") as f:
         lines = [line.strip() for line in f.readlines()]
 
     p1(lines)
