@@ -1,136 +1,64 @@
 """
 https://adventofcode.com/2023/day/11
---- Day 11: Cosmic Expansion ---
-
-You continue following signs for "Hot Springs" and eventually come across an observatory. The Elf within turns out to be a researcher studying cosmic expansion using the giant telescope here.
-
-He doesn't know anything about the missing machine parts; he's only visiting for this research project. However, he confirms that the hot springs are the next-closest area likely to have people; he'll even take you straight there once he's done with today's observation analysis.
-
-Maybe you can help him with the analysis to speed things up?
-
-The researcher has collected a bunch of data and compiled the data into a single giant image (your puzzle input). The image includes empty space (.) and galaxies (#). For example:
-
-...#......
-.......#..
-#.........
-..........
-......#...
-.#........
-.........#
-..........
-.......#..
-#...#.....
-
-The researcher is trying to figure out the sum of the lengths of the shortest path between every pair of galaxies. However, there's a catch: the universe expanded in the time it took the light from those galaxies to reach the observatory.
-
-Due to something involving gravitational effects, only some space expands. In fact, the result is that any rows or columns that contain no galaxies should all actually be twice as big.
-
-In the above example, three columns and two rows contain no galaxies:
-
-   v  v  v
- ...#......
- .......#..
- #.........
->..........<
- ......#...
- .#........
- .........#
->..........<
- .......#..
- #...#.....
-   ^  ^  ^
-
-These rows and columns need to be twice as big; the result of cosmic expansion therefore looks like this:
-
-....#........
-.........#...
-#............
-.............
-.............
-........#....
-.#...........
-............#
-.............
-.............
-.........#...
-#....#.......
-
-Equipped with this expanded universe, the shortest path between every pair of galaxies can be found. It can help to assign every galaxy a unique number:
-
-....1........
-.........2...
-3............
-.............
-.............
-........4....
-.5...........
-............6
-.............
-.............
-.........7...
-8....9.......
-
-In these 9 galaxies, there are 36 pairs. Only count each pair once; order within the pair doesn't matter. For each pair, find any shortest path between the two galaxies using only steps that move up, down, left, or right exactly one . or # at a time. (The shortest path between two galaxies is allowed to pass through another galaxy.)
-
-For example, here is one of the shortest paths between galaxies 5 and 9:
-
-....1........
-.........2...
-3............
-.............
-.............
-........4....
-.5...........
-.##.........6
-..##.........
-...##........
-....##...7...
-8....9.......
-
-This path has length 9 because it takes a minimum of nine steps to get from galaxy 5 to galaxy 9 (the eight locations marked # plus the step onto galaxy 9 itself). Here are some other example shortest path lengths:
-
-    Between galaxy 1 and galaxy 7: 15
-    Between galaxy 3 and galaxy 6: 17
-    Between galaxy 8 and galaxy 9: 5
-
-In this example, after expanding the universe, the sum of the shortest path between all 36 pairs of galaxies is 374.
-
-Expand the universe, then find the length of the shortest path between every pair of galaxies. What is the sum of these lengths?
 """
 import numpy as np
 
 def main():
-    with open("inputs\day11p.txt") as f:
+    with open("inputs\day11.txt") as f:
         lines = [[*line.strip()] for line in f.readlines()]
+
+    lines = np.array(lines)
 
     p1(lines)
     p2(lines)
 
 def p1(grid):
-    print(grid)
+    grid = expanduniverse(grid)
+    indices = np.argwhere(grid == '#')
+
+    total = 0
+    for i in range(len(indices)):
+        for j in range(i + 1, len(indices)):
+            total += sum(np.abs(indices[i] - indices[j]))
+
+    print(total)
 
 def p2(grid):
-    pass
+    empty_rows = np.all(grid == '.', axis=1)
+    empty_columns = np.all(grid == '.', axis=0)
+    indices = np.argwhere(grid == '#')
+    total = 0
+    for i in range(len(indices)):
+        for j in range(i + 1, len(indices)):
+            x, y = indices[i][0], indices[i][1]
+            x_end, y_end = indices[j][0], indices[j][1]
+            while x != x_end:
+                if x < x_end:
+                    x += 1
+                else:
+                    x -= 1
+                total += 1
+                if empty_rows[x]:
+                    total += 1000000 - 1
 
-def expandgrid(grid):
-    newgrid = np.array([])
-    for row in range(len(grid)):
-        newgrid.append(grid[row])
-        if grid[row].count(".") == len(grid[row]):
-            newgrid.append(grid[row])
+            while y != y_end:
+                if y < y_end:
+                    y += 1
+                else:
+                    y -= 1
+                total += 1
+                if empty_columns[y]:
+                    total += 1000000 - 1
 
-    grid = np.transpose(grid)
-    newgrid = np.transpose(grid)
+    print(total)
 
-    for row in range(len(grid)):
-        if grid[row].count(".") == len(grid[row]):
-            newgrid.append(grid[row])
+def expanduniverse(grid):
+    empty_rows = np.all(grid == '.', axis=1)
+    empty_columns = np.all(grid == '.', axis=0)
 
-    newgrid = np.transpose(grid)
+    grid = np.insert(grid, np.where(empty_rows)[0] + 1, grid[empty_rows], axis=0)
+    grid = np.insert(grid, np.where(empty_columns)[0] + 1, grid[:, empty_columns], axis=1)
 
-    for row in newgrid:
-        print(str(row))
-    
-    return newgrid
+    return grid
 
 main()
