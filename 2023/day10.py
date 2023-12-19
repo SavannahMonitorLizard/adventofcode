@@ -2,7 +2,7 @@
 https://adventofcode.com/2023/day/10
 """
 def main():
-    with open("inputs\p.txt") as f:
+    with open("inputs\day10.txt") as f:
         lines = [line.strip() for line in f.readlines()]
 
     p1(lines)
@@ -60,23 +60,28 @@ def p1(grid):
 
         distance += 1
 
-    grid2 = grid.copy()
-    for i in range(len(grid)):
-        for j in range(len(grid[i])):
-            grid2[i] = [*grid2[i]]
-            if (i, j) in visited:
-                grid2[i][j] = "#"
-            else:
-                grid2[i][j] = "."
-            "".join(grid2[i])
+    # grid2 = grid.copy()
+    # for i in range(len(grid)):
+    #     for j in range(len(grid[i])):
+    #         grid2[i] = [*grid2[i]]
+    #         if (i, j) in visited:
+    #             grid2[i][j] = "#"
+    #         else:
+    #             grid2[i][j] = "."
+    #         "".join(grid2[i])
 
-    with open("inputs\\day10a.txt", "w") as f:
-        for line in grid2:
-            f.write("".join(line) + "\n")
+    # with open("inputs\\day10a.txt", "w") as f:
+    #     for line in grid2:
+    #         f.write("".join(line) + "\n")
  
-    print(distance/2)
+    print(int(distance/2))
 
 def p2(grid):
+    def polygon_area(vertices):
+        n = len(vertices)
+        area = 0.5 * abs(sum(vertices[i][0] * vertices[(i + 1) % n][1] - vertices[(i + 1) % n][0] * vertices[i][1] for i in range(n)))
+        return area
+    
     def isvalid(x, y):
         if 0 <= x < len(grid) and 0 <= y < len(grid[x]) and ((x, y) not in visited or (grid[x][y] == "S" and distance != 1)):
             return True
@@ -87,12 +92,12 @@ def p2(grid):
             if grid[i][j] == "S":
                 start_x, start_y = i, j
 
-    x, y = start_x, start_y + 1
+    x, y = start_x - 1, start_y
     distance = 1
-    seeds = []
     visited = set()
     visited.add((start_x, start_y))
-    left = (-1, 0)
+    vertices = []
+    vertices.append((start_x, start_y))
 
     while grid[x][y] != "S":
         visited.add((x, y))
@@ -108,21 +113,25 @@ def p2(grid):
             elif isvalid(x, y - 1):
                 x, y = x, y - 1
         elif grid[x][y] == "L":
+            vertices.append((x,y))
             if isvalid(x, y + 1):
                 x, y = x, y + 1
             elif isvalid(x - 1, y):
                 x, y = x - 1, y
         elif grid[x][y] == "J":
+            vertices.append((x,y))
             if isvalid(x, y - 1):
                 x, y = x, y - 1
             elif isvalid(x - 1, y):
                 x, y = x - 1, y
         elif grid[x][y] == "7":
+            vertices.append((x,y))
             if isvalid(x, y - 1):
                 x, y = x, y - 1
             elif isvalid(x + 1, y):
                 x, y = x + 1, y
         elif grid[x][y] == "F":
+            vertices.append((x,y))
             if isvalid(x, y + 1):
                 x, y = x, y + 1
             elif isvalid(x + 1, y):
@@ -130,14 +139,6 @@ def p2(grid):
 
         distance += 1
 
-        if grid[x][y] == "7":
-            left = (0, 1)
-        elif grid[x][y] == "L":
-            left = (-1, 0)
-        elif grid[x][y] == "J":
-            left = (0, -1)
-        elif grid[x][y] == "F":
-            left = (-1, 0)
-
+    print((polygon_area(vertices) - (distance / 2) + 1))
 
 main()
