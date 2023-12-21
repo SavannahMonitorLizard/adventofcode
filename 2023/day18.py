@@ -9,11 +9,6 @@ def main():
     p2(lines)
 
 def p1(lines):
-    def polygon_area(vertices):
-        n = len(vertices)
-        area = 0.5 * abs(sum(vertices[i][0] * vertices[(i + 1) % n][1] - vertices[(i + 1) % n][0] * vertices[i][1] for i in range(n)))
-        return area
-    
     pos = (0, 0)
     vertices = []
     boundary = 0
@@ -36,11 +31,6 @@ def p1(lines):
     print(int(polygon_area(vertices) - (boundary / 2) + 1 + boundary))
 
 def p2(lines):
-    def polygon_area(vertices):
-        n = len(vertices)
-        area = 0.5 * abs(sum(vertices[i][0] * vertices[(i + 1) % n][1] - vertices[(i + 1) % n][0] * vertices[i][1] for i in range(n)))
-        return area
-    
     pos = (0, 0)
     vertices = []
     boundary = 0
@@ -63,5 +53,10 @@ def p2(lines):
         vertices.append(pos)
 
     print(int(polygon_area(vertices) - (boundary / 2) + 1 + boundary))
+
+def polygon_area(vertices):
+    n = len(vertices)
+    area = 0.5 * abs(sum(vertices[i][0] * vertices[(i + 1) % n][1] - vertices[(i + 1) % n][0] * vertices[i][1] for i in range(n)))
+    return area
 
 main()
