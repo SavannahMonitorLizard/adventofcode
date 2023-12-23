@@ -2,10 +2,10 @@
 https://adventofcode.com/2023/day/15
 """
 def main():
-    with open("inputs\day15p.txt") as f:
+    with open("inputs\day15.txt") as f:
         lines = f.readlines()[0].split(",")
 
-    print(p1(lines))
+    # print(p1(lines))
     print(p2(lines))
 
 def p1(line):
@@ -21,20 +21,20 @@ def p2(line):
         if "=" in order:
             label, lens = order.split("=")
             box = HASH(label)
-            if box not in lenses.keys() or not any([label in lens for lens in lenses[box]]):
+            if box not in lenses.keys() or (not any([label == lens[:-1] for lens in lenses[box]])):
                 lenses.setdefault(box, []).append(label + lens)
             else:
                 for i, nlens in enumerate(lenses[box]):
-                    if label in nlens:
+                    if label == nlens[:-1]:
                         inx = i
                 lenses[box][inx] = label + lens
         elif "-" in order:
             label, _ = order.split("-")
             box = HASH(label)
             if box in lenses.keys():
-                if any([label in lens for lens in lenses[box]]):
+                if any([label == lens[:-1] for lens in lenses[box]]):
                     for i, lens in enumerate(lenses[box]):
-                        if label in lens:
+                        if label == lens[:-1]:
                             inx = i
                     del lenses[box][inx]
 
@@ -46,7 +46,7 @@ def p2(line):
             # print(box, i, lens, (box + 1) * (i + 1) * int(lens[-1]))
             total += (box + 1) * (i + 1) * int(lens[-1])
 
-    # <304030
+    # 293687 < x < 304030
 
     return total
 
