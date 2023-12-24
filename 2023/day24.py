@@ -13,16 +13,15 @@ def main():
 def p1(lines):
     total = 0
     for i, line in enumerate(lines):
-        otherlines = np.delete(lines, i, axis=0)
+        otherlines = lines[i+1:]
         for oline in otherlines:
             intersect = intersection([line[0], line[1]], [line[0]+line[3], line[1]+line[4]], [oline[0], oline[1]], [oline[0]+oline[3], oline[1]+oline[4]])
-            if intersect[0] >= 200000000000000 and intersect[0] <= 400000000000000:
-                if intersect[1] >= 200000000000000 and intersect[1] <= 400000000000000:
-                    if ((intersect[0] >= line[0] and line[3] > 0) or (intersect[0] <= line[0] and line[3] < 0)) and ((intersect[0] >= oline[0] and oline[3] > 0) or (intersect[0] <= oline[0] and oline[3] < 0)):
-                        if ((intersect[1] >= line[1] and line[4] > 0) or (intersect[1] <= line[1] and line[4] < 0)) and ((intersect[1] >= oline[1] and oline[4] > 0) or (intersect[1] <= oline[1] and oline[4] < 0)):
-                            total += 1
+            if 200000000000000 <= intersect[0] <= 400000000000000 and 200000000000000 <= intersect[1] <= 400000000000000:
+                if ((intersect[0] >= line[0] and line[3] > 0) or (intersect[0] <= line[0] and line[3] < 0)) and ((intersect[0] >= oline[0] and oline[3] > 0) or (intersect[0] <= oline[0] and oline[3] < 0)):
+                    if ((intersect[1] >= line[1] and line[4] > 0) or (intersect[1] <= line[1] and line[4] < 0)) and ((intersect[1] >= oline[1] and oline[4] > 0) or (intersect[1] <= oline[1] and oline[4] < 0)):
+                        total += 1
 
-    return total // 2
+    return total
 
 def p2(lines):
     x, y, z = z3.BitVec('x', 64), z3.BitVec('y', 64), z3.BitVec('z', 64)
