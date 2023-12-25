@@ -7,8 +7,8 @@ def main():
     with open("inputs\day07.txt") as f:
         lines = [line.strip() for line in f.readlines()]
 
-    p1(lines)
-    p2(lines)
+    print(p1(lines))
+    print(p2(lines))
 
 def p1(lines):
     ranks = []
@@ -29,7 +29,7 @@ def p1(lines):
                 ranks.append(hand)
                 bids.append(int(bid))
 
-    print(sum(np.array(list(range(1,len(bids)+1))) * np.array(bids)))
+    return sum(np.array(list(range(1,len(bids)+1))) * np.array(bids))
 
 def p2(lines):
     ranks = []
@@ -50,9 +50,7 @@ def p2(lines):
                 ranks.append(hand)
                 bids.append(int(bid))
 
-    print()
-
-    print(sum(np.array(list(range(1,len(bids)+1))) * np.array(bids)))
+    return sum(np.array(list(range(1,len(bids)+1))) * np.array(bids))
 
 def compare_hands1(hand1, hand2):
     card_order = 'AKQJT98765432'

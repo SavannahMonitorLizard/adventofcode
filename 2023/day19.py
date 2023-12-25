@@ -13,8 +13,8 @@ def main():
     orders = genorders(workflow)
     parts = genparts(parts)
 
-    # p1(parts, orders)
-    p2()
+    print(p1(parts, orders))
+    print(p2())
 
 def p1(parts, orders):
     total = 0
@@ -43,11 +43,11 @@ def p1(parts, orders):
         if wf == "A":
             total += part["x"] + part["m"] + part["a"] + part["s"] 
 
-    print(total)
+    return total
 
 def p2():
     ranges = {"x": range(1, 4001), "m": range(1, 4001), "a": range(1, 4001), "s": range(1, 4001)}
-    print(pruneranges(ranges, "in"))
+    return pruneranges(ranges, "in")
 
 def genorders(workflow):
     orders = {}

@@ -5,8 +5,8 @@ def main():
     with open("inputs\day18.txt") as f:
         lines = [line.strip() for line in f.readlines()]
 
-    p1(lines)
-    p2(lines)
+    print(p1(lines))
+    print(p2(lines))
 
 def p1(lines):
     pos = (0, 0)
@@ -28,7 +28,7 @@ def p1(lines):
 
         vertices.append(pos)
 
-    print(int(polygon_area(vertices) - (boundary / 2) + 1 + boundary))
+    return int(polygon_area(vertices) - (boundary / 2) + 1 + boundary)
 
 def p2(lines):
     pos = (0, 0)
@@ -52,7 +52,7 @@ def p2(lines):
 
         vertices.append(pos)
 
-    print(int(polygon_area(vertices) - (boundary / 2) + 1 + boundary))
+    return int(polygon_area(vertices) - (boundary / 2) + 1 + boundary)
 
 def polygon_area(vertices):
     n = len(vertices)

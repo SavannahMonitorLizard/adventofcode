@@ -5,14 +5,14 @@ def main():
     with open("inputs\day16.txt") as f:
         lines = [line.strip() for line in f.readlines()]
 
-    p1(lines)
-    p2(lines)
+    print(p1(lines))
+    print(p2(lines))
 
 def p1(grid):
     def isvalid(x, y):
         if 0 <= x < len(grid) and 0 <= y < len(grid[x]):
             return True
-        
+
     energized = set()
     beams = {(0,0): (0, 1)}
     c = 0
@@ -92,7 +92,7 @@ def p1(grid):
         if c >= 200000:
             break
 
-    print(len(energized))
+    return len(energized)
 
 def p2(grid):
     def isvalid(x, y):
@@ -185,7 +185,7 @@ def p2(grid):
 
         distances.append(len(energized))
 
-    print(max(distances))
+    return max(distances)
 
 def get_starts(array):
     rows = len(array)

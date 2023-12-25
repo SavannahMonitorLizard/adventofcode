@@ -7,7 +7,7 @@ def main():
     with open("inputs\day17.txt") as f:
         lines = [list(map(int, [*line.strip()])) for line in f.readlines()]
 
-    # p1(lines)
+    p1(lines)
     p2(lines)
 
 def p1(grid):

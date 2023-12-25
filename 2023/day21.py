@@ -12,7 +12,7 @@ def main():
     grid = np.array(lines)
 
     print(p1(64))
-    p2(26501365 % len(grid))
+    print(p2(26501365 % len(grid)))
 
 def p1(n):
     directions = np.array([
@@ -76,7 +76,7 @@ def p2(n):
     coeffs = np.polyfit([65, 196, 327], counts, 2)
     print(coeffs)
     poly = np.poly1d(coeffs)
-    print(poly(26501365))
+    return poly(26501365)
 
 def isvalid(pt):
     x, y = pt

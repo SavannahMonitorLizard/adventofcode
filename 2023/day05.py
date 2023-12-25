@@ -7,8 +7,8 @@ def main():
     with open("inputs\day05.txt") as f:
         lines = f.read()
 
-    p1(lines)
-    p2(lines)
+    print(p1(lines))
+    print(p2(lines))
 
 def p1(lines):
     orders = lines.split("\n\n")
@@ -20,7 +20,7 @@ def p1(lines):
     for loc in range(len(locs)):
         locs[loc] = output(locs[loc], orders)
 
-    print(min(locs))
+    return min(locs)
 
 def p2(lines):
     orders = lines.split("\n\n")
@@ -28,7 +28,6 @@ def p2(lines):
     del orders[0]
     for i in range(len(orders)):
         orders[i] = [list(map(int, num.split(" "))) for num in orders[i].split(":")[1].split("\n")[1:]]
-    boundaries = []
     newlocs = []
     i = 0
     while i < len(locs):
@@ -36,8 +35,7 @@ def p2(lines):
         newlocs.append(tlocs)
         i += 2
 
-    for pair in newlocs:
-        boundaries.append(find_boundaries(pair[0],pair[1],orders))
+    boundaries = [find_boundaries(pair[0], pair[1], orders) for pair in newlocs]
 
     points = []
     for li in boundaries:
@@ -46,11 +44,8 @@ def p2(lines):
 
     # print(points)
     
-    outs = []
-    for pt in points:
-        outs.append(output(pt, orders))
-    
-    print(min(outs))
+    outs = [output(pt, orders) for pt in points]
+    return min(outs)
 
 def find_boundaries(start, end, orders):
     boundaries = []

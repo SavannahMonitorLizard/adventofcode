@@ -9,13 +9,13 @@ def main():
 
     lines = np.array(lines)
 
-    p1(lines)
-    p2(lines)
+    print(p1(lines))
+    print(p2(lines))
 
 def p1(grid):
     grid = tiltnorth(grid)
 
-    print(sum(sum(np.transpose(grid == "O")) * np.arange(len(grid[0]), 0, -1)))
+    return sum(sum(np.transpose(grid == "O")) * np.arange(len(grid[0]), 0, -1))
 
 def p2(grid):
     def contained(grid, grids):
@@ -36,7 +36,7 @@ def p2(grid):
 
     inx = (1000000000-(c+1))%(i-c) + c
     bgrid = grids[inx]
-    print(sum(sum(np.transpose(bgrid == "O")) * np.arange(len(bgrid[0]), 0, -1)))
+    return sum(sum(np.transpose(bgrid == "O")) * np.arange(len(bgrid[0]), 0, -1))
 
 def tiltnorth(grid):
     def isvalid(x, y):

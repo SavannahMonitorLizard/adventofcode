@@ -5,8 +5,8 @@ def main():
     with open("inputs\day06.txt") as f:
         lines = [line.strip() for line in f.readlines()]
 
-    p1(lines)
-    p2(lines)
+    print(p1(lines))
+    print(p2(lines))
 
 def p1(lines):
     total = 1
@@ -21,7 +21,7 @@ def p1(lines):
 
         total *= t
 
-    print(total)
+    return total
 
 def p2(lines):
     total = 0
@@ -31,6 +31,6 @@ def p2(lines):
         if (time-i)*i > dist:
             total += 1
 
-    print(total)
+    return total
 
 main()

@@ -9,8 +9,8 @@ def main():
 
     lines = np.array(lines)
 
-    p1(lines)
-    p2(lines)
+    print(p1(lines))
+    print(p2(lines))
 
 def p1(grid):
     grid = expanduniverse(grid)
@@ -21,7 +21,7 @@ def p1(grid):
         for j in range(i + 1, len(indices)):
             total += sum(np.abs(indices[i] - indices[j]))
 
-    print(total)
+    return total
 
 def p2(grid):
     empty_rows = np.all(grid == '.', axis=1)
@@ -50,7 +50,7 @@ def p2(grid):
                 if empty_columns[y]:
                     total += 1000000 - 1
 
-    print(total)
+    return total
 
 def expanduniverse(grid):
     empty_rows = np.all(grid == '.', axis=1)

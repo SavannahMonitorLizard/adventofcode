@@ -5,7 +5,7 @@ def main():
     with open("inputs\day15.txt") as f:
         lines = f.readlines()[0].split(",")
 
-    # print(p1(lines))
+    print(p1(lines))
     print(p2(lines))
 
 def p1(line):
@@ -38,15 +38,13 @@ def p2(line):
                             inx = i
                     del lenses[box][inx]
 
-    print(lenses)
+    # print(lenses)
     
     total = 0
     for box in [lens for lens in lenses.keys() if len(lenses[lens]) != 0]:
         for i, lens in enumerate(lenses[box]):
             # print(box, i, lens, (box + 1) * (i + 1) * int(lens[-1]))
             total += (box + 1) * (i + 1) * int(lens[-1])
-
-    # 293687 < x < 304030
 
     return total
 

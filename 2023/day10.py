@@ -5,8 +5,8 @@ def main():
     with open("inputs\day10.txt") as f:
         lines = [line.strip() for line in f.readlines()]
 
-    p1(lines)
-    p2(lines)
+    print(p1(lines))
+    print(p2(lines))
 
 def p1(grid):
     def isvalid(x, y):
@@ -59,22 +59,8 @@ def p1(grid):
                 x, y = x + 1, y
 
         distance += 1
-
-    # grid2 = grid.copy()
-    # for i in range(len(grid)):
-    #     for j in range(len(grid[i])):
-    #         grid2[i] = [*grid2[i]]
-    #         if (i, j) in visited:
-    #             grid2[i][j] = "#"
-    #         else:
-    #             grid2[i][j] = "."
-    #         "".join(grid2[i])
-
-    # with open("inputs\\day10a.txt", "w") as f:
-    #     for line in grid2:
-    #         f.write("".join(line) + "\n")
  
-    print(int(distance/2))
+    return int(distance/2)
 
 def p2(grid):
     def polygon_area(vertices):
@@ -139,6 +125,6 @@ def p2(grid):
 
         distance += 1
 
-    print((polygon_area(vertices) - (distance / 2) + 1))
+    return int((polygon_area(vertices) - (distance / 2) + 1))
 
 main()

@@ -7,8 +7,8 @@ def main():
     with open("inputs\day08.txt") as f:
         lines = [line.strip() for line in f.readlines()]
 
-    p1(lines)
-    p2(lines)
+    print(p1(lines))
+    print(p2(lines))
 
 def p1(lines):
     rl = lines[0]
@@ -32,7 +32,7 @@ def p1(lines):
         if i >= len(rl):
             i = 0
 
-    print(steps)
+    return steps
 
 def p2(lines):
     rl = lines[0]
@@ -61,6 +61,6 @@ def p2(lines):
                 i = 0
         steps.append(step)
 
-    print(math.lcm(*steps))
+    return math.lcm(*steps)
 
 main()

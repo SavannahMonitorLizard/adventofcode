@@ -8,8 +8,8 @@ def main():
     with open("inputs\day09.txt") as f:
         lines = [line.strip() for line in f.readlines()]
 
-    p1(lines)
-    p2(lines)
+    print(p1(lines))
+    print(p2(lines))
 
 def p1(lines):
     total = 0
@@ -25,7 +25,7 @@ def p1(lines):
 
         total += sum(lastelems)
 
-    print(total)
+    return total
 
 def p2(lines):
     total = 0
@@ -41,6 +41,6 @@ def p2(lines):
 
         total += sum(elems * np.fromiter(itertools.cycle([1,-1]), int, len(elems)))
 
-    print(total)
+    return total
 
 main()

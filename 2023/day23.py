@@ -10,8 +10,6 @@ def main():
     print(p1(grid))
     print(p2(grid))
 
-    # 6258
-
 def p1(grid):
     def isvalid(r, c):
         return 0 <= r < len(grid) and 0 <= c < len(grid[0]) and grid[r][c] != "#"

@@ -7,8 +7,8 @@ def main():
     with open("inputs\day13.txt") as f:
         lines = f.read().split("\n\n")
 
-    p1(lines)
-    p2(lines)
+    print(p1(lines))
+    print(p2(lines))
 
 def p1(grids):
     total = 0
@@ -21,7 +21,7 @@ def p1(grids):
         else:
             total += 100 * vertref(np.transpose(grid))
 
-    print(total)
+    return total
 
 def p2(grids):
     total = 0
@@ -34,7 +34,7 @@ def p2(grids):
         else:
             total += 100 * vertref2(np.transpose(grid))
 
-    print(total)
+    return total
 
 def vertref(grid):
     _, c = grid.shape
