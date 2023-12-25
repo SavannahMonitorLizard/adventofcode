@@ -1,17 +1,21 @@
 """
 https://adventofcode.com/2023/day/25
 """
+import networkx as nx
+import math
+
 def main():
     with open("inputs\day25.txt") as f:
-        lines = [line.strip() for line in f.readlines()]
+        lines = [[line.strip().split(": ")] for line in f.readlines()]
 
-    p1(lines)
-    p2(lines)
-
-def p1(grid):
-    pass
-
-def p2(grid):
-    pass
+    G  = nx.Graph()
+    for line in lines:
+        line = line[0]
+        start, dests = line[0], line[1]
+        for dest in dests.split(" "):
+            G.add_edge(start, dest)
+            
+    G.remove_edges_from(nx.minimum_edge_cut(G))
+    print(math.prod(len(c) for c in nx.connected_components(G)))
 
 main()
