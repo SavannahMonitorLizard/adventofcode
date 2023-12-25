@@ -5,8 +5,8 @@ def main():
     with open("inputs\day02.txt") as f:
         lines = [line.strip() for line in f.readlines()]
 
-    p1(lines)
-    p2(lines)
+    print(p1(lines))
+    print(p2(lines))
 
 def p1(lines):
     max_values = {'red': 12, 'green': 13, 'blue': 14}
@@ -29,7 +29,7 @@ def p1(lines):
         if good:
             total += int(id)
     
-    print(total)
+    return total
 
 def p2(lines):
     total = 0
@@ -48,6 +48,6 @@ def p2(lines):
 
         total += color_counts['blue'] * color_counts['red'] * color_counts['green']
 
-    print(total)
+    return total
 
 main()

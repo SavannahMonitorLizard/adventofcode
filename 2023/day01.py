@@ -5,8 +5,8 @@ def main():
     with open("inputs\day01.txt") as f:
         lines = [line.strip() for line in f.readlines()]
 
-    p1(lines)
-    p2(lines)
+    print(p1(lines))
+    print(p2(lines))
 
 def p1(lines):
     total = 0
@@ -25,7 +25,7 @@ def p1(lines):
         n = firstchar + lastchar
         total += int(n)
 
-    print(total)
+    return total
 
 def p2(lines):
     total = 0
@@ -61,7 +61,7 @@ def p2(lines):
         newline = [x for x in newline if x != 0]
         total += newline[0] * 10 + newline[-1]
     
-    print(total)
+    return total
 
 def findall(p, s):
     ii = []

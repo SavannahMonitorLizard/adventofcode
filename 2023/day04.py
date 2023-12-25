@@ -5,8 +5,8 @@ def main():
     with open("inputs\day04.txt") as f:
         lines = [line.strip() for line in f.readlines()]
 
-    p1(lines)
-    p2(lines)
+    print(p1(lines))
+    print(p2(lines))
 
 def p1(lines):
     total = 0
@@ -22,7 +22,7 @@ def p1(lines):
         if count != 0:
             total += (2**(count-1))
 
-    print(total)
+    return total
 
 def p2(lines):
     cards = [1] * len(lines)
@@ -39,6 +39,6 @@ def p2(lines):
         for j in range(1,count+1):
             cards[i+j] += cards[i]
 
-    print(sum(cards))
+    return sum(cards)
 
 main()
