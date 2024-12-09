@@ -1,5 +1,3 @@
-import re
-
 def main():
     with open("inputs\day04.txt") as f:
         lines = [list(line.strip()) for line in f.readlines()]
